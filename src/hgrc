@@ -14,11 +14,7 @@ transplant =
 hgext.bookmarks =
 hgsubversion =
 hggit =
-fixutf8=D:/dev/hg/TortoiseHg-3.7.3/src/ext/hg-fixutf8/fixutf8.py
-#hgsvn = /cygdrive/d/dev/hg/tortoisehg-3.6.1/src/ext/hgsubversion/hgsubversion
-#hggit = /cygdrive/d/dev/hg/tortoisehg-3.6.1/src/ext/hggit/hggit
-#hgsvn = D:/dev/hg/TortoiseHg2.10.2/src/ext/hgsubversion/hgsubversion
-#hggit = D:/dev/hg/TortoiseHg2.10.2/src/ext/hggit/hggit
+fixutf8=
 
 [extdiff]
 cmd.vdiff = kdiff3

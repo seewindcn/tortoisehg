@@ -2,10 +2,10 @@ import sys, os
 from os.path import join, abspath, dirname
 
 src_path = abspath(dirname(__file__))
-sys.path.append(src_path + '\\py27lib')
-# sys.path.append(src_path + '\\library')
-sys.path.append(src_path + '\\lib32')
-# print '*******', sys.path
+sys.path.append(join(src_path, 'py27lib'))
+sys.path.append(join(src_path, 'lib32'))
+sys.path.append(join(src_path, 'ext'))
+sys.path.append(join(src_path, 'ext', 'hg-fixutf8'))
 os.wingide = 0
 
 if 1:
