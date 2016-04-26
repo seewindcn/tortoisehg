@@ -1,0 +1,14 @@
+# tortoisehg
+tortoisehg for windows, with fixutf8, svn, git, source,  can debug;
+
+current version is 3.7.3;
+
+
+some features:
+- use win32 version, because can not found any new pysvn for x64;
+- fixutf8 update for new tortoisehg;
+- with mercurial and tortoisehg source, can debug by wingide, convenience for
+  study;
+
+
+
