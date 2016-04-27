@@ -146,14 +146,22 @@ def fixutf8_fromlocal(s):
 
 
 def fixutf8_tolocal(s, errors='strict'):
+    from mercurial import encoding
     if isinstance(s, unicode):
         u = s
+    elif isinstance(s, encoding.localstr):
+        u = s._utf8.decode('utf8')
     else:
         try:
-            u = s.decode('utf8')
+            u = s.decode('utf-8')
         except UnicodeDecodeError:
             return s
-    return u.encode(old_encoding, errors=errors)
+    # return u.encode(old_encoding, errors=errors)
+    if isinstance(encoding.encoding, encoding.localstr):
+        l = u.encode(old_encoding, errors=errors)
+    else:
+        l = u.encode(encoding.encoding, errors=errors)
+    return encoding.localstr(u.encode('utf-8'), l)
 
 def qt_tolocal(s, errors='strict'):
     return fixutf8_tolocal(unicode(s), errors=errors)
@@ -169,9 +177,15 @@ def uisetup(ui):
         global old_encoding
         from mercurial import encoding
         old_encoding = encoding.encoding
-        encoding.encoding = 'UTF-8'
+        encoding.encoding = encoding.localstr('UTF-8', 'UTF-8')
         encoding.fromlocal = fixutf8_fromlocal
         encoding.tolocal = fixutf8_tolocal
+        from mercurial import commands
+        for i, v in enumerate(commands.globalopts):
+            if v[1] == 'encoding':
+                v = list(v); v[2] = 'UTF-8'
+                commands.globalopts[i] = tuple(v)
+                break
     except ImportError:
         util._encoding = "utf-8"
 

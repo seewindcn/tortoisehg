@@ -6,7 +6,7 @@ sys.path.append(join(src_path, 'py27lib'))
 sys.path.append(join(src_path, 'lib32'))
 sys.path.append(join(src_path, 'ext'))
 sys.path.append(join(src_path, 'ext', 'hg-fixutf8'))
-os.wingide = 0
+# os.wingide = 1
 
 if 1:
     os.environ['HGRCPATH'] = os.pathsep.join([join(src_path, 'hgrc')])
@@ -16,7 +16,7 @@ if 1:
 # )
 
 def _hginit():
-    if os.wingide:
+    if getattr(os, 'wingide', 0):
         import wingdbstub
         print 'wingdbstub ok'
     #sys.frozen = False
