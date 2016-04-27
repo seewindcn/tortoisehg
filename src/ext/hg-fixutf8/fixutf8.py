@@ -134,6 +134,8 @@ def fixutf8_fromlocal(s):
     from mercurial import encoding
     if isinstance(s, encoding.localstr):
         return s._utf8
+    if not isinstance(encoding.encoding, encoding.localstr):
+        return s.decode(encoding.encoding, encoding.encodingmode).encode('utf-8')
 
     try:
         return s.decode(old_encoding, encoding.encodingmode).encode("utf-8")
@@ -155,7 +157,7 @@ def fixutf8_tolocal(s, errors='strict'):
         try:
             u = s.decode('utf-8')
         except UnicodeDecodeError:
-            return s
+            u = s.decode(old_encoding)
     # return u.encode(old_encoding, errors=errors)
     if isinstance(encoding.encoding, encoding.localstr):
         l = u.encode(old_encoding, errors=errors)
