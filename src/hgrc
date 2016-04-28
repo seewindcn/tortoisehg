@@ -5,7 +5,7 @@
 mq = 
 convert = 
 extdiff = 
-largefiles =
+#largefiles =
 hgext.extdiff=
 fetch = 
 purge = 

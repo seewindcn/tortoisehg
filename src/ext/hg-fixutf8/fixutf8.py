@@ -175,17 +175,19 @@ def uisetup(ui):
 
     win32helper.uisetup(ui)
 
+    en_str = 'utf-8'
     try:
         global old_encoding
         from mercurial import encoding
+        en_str = encoding.localstr('UTF-8', 'UTF-8')
         old_encoding = encoding.encoding
-        encoding.encoding = encoding.localstr('UTF-8', 'UTF-8')
+        encoding.encoding = en_str
         encoding.fromlocal = fixutf8_fromlocal
         encoding.tolocal = fixutf8_tolocal
         from mercurial import commands
         for i, v in enumerate(commands.globalopts):
             if v[1] == 'encoding':
-                v = list(v); v[2] = 'UTF-8'
+                v = list(v); v[2] = en_str
                 commands.globalopts[i] = tuple(v)
                 break
     except ImportError:
@@ -193,7 +195,7 @@ def uisetup(ui):
 
     try:
         from tortoisehg.util import hglib
-        hglib._encoding = 'UTF-8'
+        hglib._encoding = en_str
         hglib._fallbackencoding = 'gbk'
         hglib.fromunicode = qt_tolocal
     except ImportError:
