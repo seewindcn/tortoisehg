@@ -1133,14 +1133,25 @@ class GitHandler(object):
             return [x for x in filteredrefs.itervalues() if x not in self.git]
 
         try:
-            progress = GitProgress(self.ui)
-            f = StringIO.StringIO()
-            ret = localclient.fetch_pack(path, determine_wants, graphwalker,
-                                         f.write, progress.progress)
-            if(f.pos != 0):
-                f.seek(0)
-                self.git.object_store.add_thin_pack(f.read, None)
-            progress.flush()
+            if 0:  #cwp
+                import tempfile
+                progress = GitProgress(self.ui)
+                with tempfile.TemporaryFile() as f:
+                    ret = localclient.fetch_pack(path, determine_wants, graphwalker,
+                                                 f.write, progress.progress)
+                    if(f.tell() != 0):
+                        f.seek(0)
+                        self.git.object_store.add_thin_pack(f.read, None)
+                    progress.flush()
+            else:
+                progress = GitProgress(self.ui)
+                f = cStringIO.StringIO()
+                ret = localclient.fetch_pack(path, determine_wants, graphwalker,
+                                             f.write, progress.progress)
+                if(f.pos != 0):
+                    f.seek(0)
+                    self.git.object_store.add_thin_pack(f.read, None)
+                progress.flush()
 
             # For empty repos dulwich gives us None, but since later
             # we want to iterate over this, we really want an empty
