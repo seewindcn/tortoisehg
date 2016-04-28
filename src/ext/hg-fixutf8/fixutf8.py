@@ -147,7 +147,7 @@ def fixutf8_fromlocal(s):
         raise encoding.error.Abort(k, hint="please check your locale settings")
 
 
-def fixutf8_tolocal(s, errors='strict'):
+def fixutf8_tolocal(s, errors='replace'):
     from mercurial import encoding
     if isinstance(s, unicode):
         u = s
