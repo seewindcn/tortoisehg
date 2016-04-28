@@ -19,19 +19,13 @@ fixutf8=
 
 [extdiff]
 cmd.vdiff = kdiff3
-cmd.kdiff3 = D:/dev/hg/tortoisehg-3.6.1/lib/kdiff3.exe
 
 
 [ui]
-username=see
-#ssh = C:\\cygwin\\bin\\ssh.exe
 traceback=1
 interactive=1
 
 
-
-
-ignore=D:\see\config\hg\hgignore_global.txt
 [tortoisehg]
 ui.language = en
 
@@ -43,7 +37,6 @@ bitbucket.org.password = qfa312132
 
 [web]
 encoding = UTF-8
-#cacerts=D:/see/config/hg/hgrc.d/cacert.pem
 cacerts=
 
 
