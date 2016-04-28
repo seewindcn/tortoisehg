@@ -23,9 +23,10 @@ cmd.kdiff3 = D:/dev/hg/tortoisehg-3.6.1/lib/kdiff3.exe
 
 
 [ui]
-username=seewind <seewindcn@gmail.com>
+username=see
 #ssh = C:\\cygwin\\bin\\ssh.exe
 traceback=1
+interactive=1
 
 
 
