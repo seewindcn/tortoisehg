@@ -1133,7 +1133,7 @@ class GitHandler(object):
             return [x for x in filteredrefs.itervalues() if x not in self.git]
 
         try:
-            if 0:  #cwp
+            if 1:  #cwp
                 import tempfile
                 progress = GitProgress(self.ui)
                 with tempfile.TemporaryFile() as f:

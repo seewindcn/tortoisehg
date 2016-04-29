@@ -22,6 +22,7 @@ cmd.vdiff = kdiff3
 
 
 [ui]
+username=seewind <seewindcn@gmail.com>
 traceback=1
 interactive=1
 

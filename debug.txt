@@ -3,3 +3,81 @@ utf8得到这样的字符串：
     s = '\xe9\x8d\x8f\xe5\x86\xb2\xe5\xb4\xb1\xe9\x90\xa9\xe7\xa8\xbf\xe5\x8f\xa7\xe7\x80\xb9\xe6\xb0\xab\xe7\xae\x9f'
     print s1.decode('utf8').encode('gbk').decode('utf8')
 
+
+
+Traceback (most recent call last):
+  File "D:\dev\hg\TortoiseHg-3.7.3\lib\..\src\mercurial\dispatch.py", line 191, in _runcatch
+  File "D:\dev\hg\TortoiseHg-3.7.3\lib\..\src\mercurial\dispatch.py", line 924, in _dispatch
+  File "D:\dev\hg\TortoiseHg-3.7.3\lib\..\src\mercurial\dispatch.py", line 681, in runcommand
+  File "D:\dev\hg\TortoiseHg-3.7.3\lib\..\src\mercurial\dispatch.py", line 1055, in _runcommand
+  File "D:\dev\hg\TortoiseHg-3.7.3\lib\..\src\mercurial\dispatch.py", line 1015, in checkargs
+  File "D:\dev\hg\TortoiseHg-3.7.3\lib\..\src\mercurial\dispatch.py", line 921, in <lambda>
+  File "D:\dev\hg\TortoiseHg-3.7.3\lib\..\src\mercurial\util.py", line 991, in check
+  File "D:\dev\hg\TortoiseHg-3.7.3\lib\..\src\mercurial\extensions.py", line 195, in closure
+  File "D:\dev\hg\TortoiseHg-3.7.3\lib\..\src\mercurial\util.py", line 991, in check
+  File "D:\dev\hg\TortoiseHg-3.7.3\src\ext\hgsubversion\wrappers.py", line 657, in clone
+  File "D:\dev\hg\TortoiseHg-3.7.3\lib\..\src\mercurial\util.py", line 991, in check
+  File "D:\dev\hg\TortoiseHg-3.7.3\lib\..\src\mercurial\commands.py", line 1563, in clone
+  File "D:\dev\hg\TortoiseHg-3.7.3\lib\..\src\mercurial\extensions.py", line 195, in closure
+  File "D:\dev\hg\TortoiseHg-3.7.3\src\ext\hgsubversion\wrappers.py", line 646, in hgclonewrapper
+  File "D:\dev\hg\TortoiseHg-3.7.3\lib\..\src\mercurial\hg.py", line 595, in clone
+  File "D:\dev\hg\TortoiseHg-3.7.3\lib\..\src\mercurial\extensions.py", line 195, in closure
+  File "D:\dev\hg\TortoiseHg-3.7.3\src\ext\hgsubversion\wrappers.py", line 548, in exchangepull
+  File "D:\dev\hg\TortoiseHg-3.7.3\lib\..\src\mercurial\extensions.py", line 195, in closure
+  File "D:\dev\hg\TortoiseHg-3.7.3\src\ext\hggit\util.py", line 52, in inner
+  File "D:\dev\hg\TortoiseHg-3.7.3\src\ext\hggit\__init__.py", line 331, in exchangepull
+  File "D:\dev\hg\TortoiseHg-3.7.3\src\ext\hggit\git_handler.py", line 260, in fetch
+  File "D:\dev\hg\TortoiseHg-3.7.3\src\ext\hggit\git_handler.py", line 1144, in fetch_pack
+  File "D:\dev\hg\TortoiseHg-3.7.3\src\ext\dulwich\object_store.py", line 606, in add_thin_pack
+  File "D:\dev\hg\TortoiseHg-3.7.3\src\ext\dulwich\object_store.py", line 541, in _complete_thin_pack
+  File "D:\dev\hg\TortoiseHg-3.7.3\src\ext\dulwich\pack.py", line 1286, in _walk_all_chains
+  File "D:\dev\hg\TortoiseHg-3.7.3\src\ext\dulwich\pack.py", line 1342, in _follow_chain
+  File "D:\dev\hg\TortoiseHg-3.7.3\src\ext\dulwich\pack.py", line 1334, in _resolve_object
+MemoryError
+abort: out of memory
+
+
+
+$ hg clone git+ssh://git@git.megagrand.com:82/rich9-client.git
+destination directory: rich9-client
+importing git objects into hg
+transaction abort!
+rollback completed
+Traceback (most recent call last):
+  File "D:\dev\hg\TortoiseHg-3.7.3\lib\..\src\mercurial\dispatch.py", line 191, in _runcatch
+  File "D:\dev\hg\TortoiseHg-3.7.3\lib\..\src\mercurial\dispatch.py", line 924, in _dispatch
+  File "D:\dev\hg\TortoiseHg-3.7.3\lib\..\src\mercurial\dispatch.py", line 681, in runcommand
+  File "D:\dev\hg\TortoiseHg-3.7.3\lib\..\src\mercurial\dispatch.py", line 1055, in _runcommand
+  File "D:\dev\hg\TortoiseHg-3.7.3\lib\..\src\mercurial\dispatch.py", line 1015, in checkargs
+  File "D:\dev\hg\TortoiseHg-3.7.3\lib\..\src\mercurial\dispatch.py", line 921, in <lambda>
+  File "D:\dev\hg\TortoiseHg-3.7.3\lib\..\src\mercurial\util.py", line 991, in check
+  File "D:\dev\hg\TortoiseHg-3.7.3\lib\..\src\mercurial\extensions.py", line 195, in closure
+  File "D:\dev\hg\TortoiseHg-3.7.3\lib\..\src\mercurial\util.py", line 991, in check
+  File "D:\dev\hg\TortoiseHg-3.7.3\src\ext\hgsubversion\wrappers.py", line 657, in clone
+  File "D:\dev\hg\TortoiseHg-3.7.3\lib\..\src\mercurial\util.py", line 991, in check
+  File "D:\dev\hg\TortoiseHg-3.7.3\lib\..\src\mercurial\commands.py", line 1563, in clone
+  File "D:\dev\hg\TortoiseHg-3.7.3\lib\..\src\mercurial\extensions.py", line 195, in closure
+  File "D:\dev\hg\TortoiseHg-3.7.3\src\ext\hgsubversion\wrappers.py", line 646, in hgclonewrapper
+  File "D:\dev\hg\TortoiseHg-3.7.3\lib\..\src\mercurial\hg.py", line 595, in clone
+  File "D:\dev\hg\TortoiseHg-3.7.3\lib\..\src\mercurial\extensions.py", line 195, in closure
+  File "D:\dev\hg\TortoiseHg-3.7.3\src\ext\hgsubversion\wrappers.py", line 548, in exchangepull
+  File "D:\dev\hg\TortoiseHg-3.7.3\lib\..\src\mercurial\extensions.py", line 195, in closure
+  File "D:\dev\hg\TortoiseHg-3.7.3\src\ext\hggit\util.py", line 52, in inner
+  File "D:\dev\hg\TortoiseHg-3.7.3\src\ext\hggit\__init__.py", line 331, in exchangepull
+  File "D:\dev\hg\TortoiseHg-3.7.3\src\ext\hggit\git_handler.py", line 267, in fetch
+  File "D:\dev\hg\TortoiseHg-3.7.3\src\ext\hggit\git_handler.py", line 725, in import_git_objects
+  File "D:\dev\hg\TortoiseHg-3.7.3\src\ext\hggit\git_handler.py", line 958, in import_git_commit
+  File "D:\dev\hg\TortoiseHg-3.7.3\lib\..\src\mercurial\localrepo.py", line 103, in wrapper
+  File "D:\dev\hg\TortoiseHg-3.7.3\lib\..\src\mercurial\localrepo.py", line 1704, in commitctx
+  File "D:\dev\hg\TortoiseHg-3.7.3\lib\..\src\mercurial\context.py", line 90, in __getitem__
+  File "D:\dev\hg\TortoiseHg-3.7.3\lib\..\src\mercurial\context.py", line 1876, in filectx
+  File "D:\dev\hg\TortoiseHg-3.7.3\lib\..\src\mercurial\context.py", line 1793, in getfilectx
+  File "D:\dev\hg\TortoiseHg-3.7.3\src\ext\hggit\git_handler.py", line 883, in getfilectx
+  File "D:\dev\hg\TortoiseHg-3.7.3\src\ext\dulwich\repo.py", line 452, in __getitem__
+  File "D:\dev\hg\TortoiseHg-3.7.3\src\ext\dulwich\object_store.py", line 116, in __getitem__
+  File "D:\dev\hg\TortoiseHg-3.7.3\src\ext\dulwich\object_store.py", line 365, in get_raw
+  File "D:\dev\hg\TortoiseHg-3.7.3\src\ext\dulwich\pack.py", line 1927, in get_raw
+  File "D:\dev\hg\TortoiseHg-3.7.3\src\ext\dulwich\pack.py", line 1097, in resolve_object
+MemoryError
+abort: out of memory
+
