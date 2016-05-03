@@ -16,9 +16,13 @@ if 1:
 # )
 
 def _hginit():
-    if getattr(os, 'wingide', 0):
+    v = getattr(os, 'wingide', 0)
+    if v==1:
         import wingdbstub
         print 'wingdbstub ok'
+    elif v > 1:
+        os.wingide = v - 1
+
     #sys.frozen = False
     if not getattr(sys, 'frozen'):
         print '~~~~~~~~~~~~~'

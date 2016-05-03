@@ -232,7 +232,11 @@ def extsetup():
 
     # only get the real command line args if we are passed a real ui object
     def disp_parse(orig, ui, args):
-        if type(ui) == _ui.ui:
+        hgcmdsvr=getattr(os, 'hgcmdsvr', None)
+        if hgcmdsvr:
+            # hgcmdsvr.cout.write('_parse~~~~~~~~~~'+'\0'.join(args))
+            args = map(fixutf8_fromlocal, args)
+        elif type(ui) == _ui.ui:
             args = win32helper.getargs()[-len(args):]
         return orig(ui, args)
     extensions.wrapfunction(dispatch, "_parse", disp_parse)

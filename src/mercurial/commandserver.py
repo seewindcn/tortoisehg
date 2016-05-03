@@ -177,6 +177,7 @@ class server(object):
         self.cresult = channeledoutput(fout, 'r')
 
         self.client = fin
+        os.hgcmdsvr = self  #cwp
 
     def _read(self, size):
         if not size:
@@ -200,6 +201,7 @@ class server(object):
             args = []
         else:
             args = self._read(length).split('\0')
+        # self.cout.write('*********'+'\0'.join(args))
 
         # copy the uis so changes (e.g. --config or --verbose) don't
         # persist between requests
