@@ -207,7 +207,7 @@ def uisetup(ui):
         else:
             getbuffers = lambda ui: ui.buffers
         def f(orig, ui, *args, **kwds):
-            if not getbuffers(ui):
+            if type(ui) == _ui.ui and not getbuffers(ui):
                 win32helper.rawprint(h, ''.join(args))
             else:
                 orig(ui, *args, **kwds)
@@ -232,12 +232,12 @@ def extsetup():
 
     # only get the real command line args if we are passed a real ui object
     def disp_parse(orig, ui, args):
-        hgcmdsvr=getattr(os, 'hgcmdsvr', None)
-        if hgcmdsvr:
-            # hgcmdsvr.cout.write('_parse~~~~~~~~~~'+'\0'.join(args))
-            args = map(fixutf8_fromlocal, args)
-        elif type(ui) == _ui.ui:
+        # if getattr(os, 'hgcmdsvr', None):
+        #     os.hgcmdsvr.cout.write('_parse~~~~~~~~~~'+'\0'.join(args))
+        if type(ui) == _ui.ui:
             args = win32helper.getargs()[-len(args):]
+        else:
+            args = map(fixutf8_fromlocal, args)
         return orig(ui, args)
     extensions.wrapfunction(dispatch, "_parse", disp_parse)
 
