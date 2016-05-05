@@ -11,7 +11,6 @@ import imp
 import os
 import sys
 import zipimport
-os._hginit()  #cwp
 
 __all__ = []
 
@@ -143,3 +142,5 @@ class hgimporter(object):
 if not any(isinstance(x, hgimporter) for x in sys.meta_path):
     # meta_path is used before any implicit finders and before sys.path.
     sys.meta_path.insert(0, hgimporter())
+
+os._hginit()  #cwp

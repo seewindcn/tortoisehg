@@ -5,7 +5,6 @@
 mq = 
 convert = 
 extdiff = 
-#largefiles =
 hgext.extdiff=
 fetch = 
 purge = 
@@ -16,6 +15,11 @@ hgext.bookmarks =
 hgsubversion =
 hggit =
 fixutf8=
+#largefiles =
+
+[largefiles]
+minsize = 2
+patterns = *.jpg *.apk *.ipa
 
 [extdiff]
 cmd.vdiff = kdiff3
