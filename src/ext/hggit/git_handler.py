@@ -913,6 +913,9 @@ class GitHandler(object):
                 ctx = context.memctx(self.repo, (p1, p2), text, list(files) +
                                      findconvergedfiles(p1, p2), getfilectx,
                                      author, date, {'hg-git': 'octopus'})
+                #no cache for 32bit
+                if getattr(os, '_is_32bit_', False):
+                    ctx._filectxfn = getfilectx
                 # See comment below about setting substate to None.
                 ctx.substate = None
                 return hex(self.repo.commitctx(ctx))
@@ -947,6 +950,9 @@ class GitHandler(object):
         ctx = context.memctx(self.repo, (p1, p2), text,
                              list(files) + findconvergedfiles(p1, p2),
                              getfilectx, author, date, extra)
+        #no cache for 32bit
+        if getattr(os, '_is_32bit_', False):
+            ctx._filectxfn = getfilectx
         # Starting Mercurial commit d2743be1bb06, memctx imports from
         # committablectx. This means that it has a 'substate' property that
         # contains the subrepo state. Ordinarily, Mercurial expects the subrepo
@@ -1133,7 +1139,7 @@ class GitHandler(object):
             return [x for x in filteredrefs.itervalues() if x not in self.git]
 
         try:
-            if 1:  #cwp
+            if getattr(os, '_is_32bit_', False):
                 import tempfile
                 progress = GitProgress(self.ui)
                 with tempfile.TemporaryFile() as f:
