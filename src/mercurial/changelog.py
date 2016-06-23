@@ -357,7 +357,8 @@ class changelog(revlog.revlog):
             time, timezone = float(tdata[0]), int(tdata[1])
             extra = decodeextra(tdata[2])
 
-        files = map(encoding.tolocal, l[3:])  #cwp  orig:::: files = l[3:]
+        files = l[3:]
+        # files = map(encoding.tolocal, l[3:])  #cwp  orig:::: files = l[3:]
         return (manifest, user, (time, timezone), files, desc, extra)
 
     def readfiles(self, node):
