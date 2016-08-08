@@ -129,6 +129,7 @@ def utf8wrapper(orig, *args, **kargs):
                     raw_input("wait")
             raise
 
+import chardet
 def fixutf8_fromlocal(s):
     # can we do a lossless round-trip?
     from mercurial import encoding
@@ -136,6 +137,10 @@ def fixutf8_fromlocal(s):
         return s._utf8
     if not isinstance(encoding.encoding, encoding.localstr):
         return s.decode(encoding.encoding, encoding.encodingmode).encode('utf-8')
+
+    det_encode = chardet.detect(s)['encoding']
+    if det_encode in ['utf-8']:
+        return s
 
     try:
         return s.decode(old_encoding, encoding.encodingmode).encode("utf-8")
@@ -154,8 +159,12 @@ def fixutf8_tolocal(s, errors='replace'):
     elif isinstance(s, encoding.localstr):
         u = s._utf8.decode('utf8')
     else:
+        det_encode = chardet.detect(s)['encoding']
         try:
-            u = s.decode('utf-8')
+            if det_encode not in ['utf-8', 'ascii']:
+                u = s.decode(old_encoding)
+            else:
+                u = s.decode('utf-8')
         except UnicodeDecodeError:
             u = s.decode(old_encoding)
     # return u.encode(old_encoding, errors=errors)

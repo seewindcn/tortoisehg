@@ -48,7 +48,7 @@ def _hginit():
 
     sys.meta_path.insert(0, hgimporter())
     #sys.frozen = False
-    if not getattr(sys, 'frozen'):
+    if not getattr(sys, 'frozen', None):
         print '~~~~~~~~~~~~~'
 
     # from mercurial import extensions
